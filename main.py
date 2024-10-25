@@ -9,6 +9,7 @@ import uvicorn
 from typing import Dict
 import numpy as np
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
 app = FastAPI()
 
 # Model definition
@@ -49,7 +50,7 @@ async def load_model():
     model = CataractClassifier(clip_model).to(device)
     
     # Load trained weights (using the quantized version for efficiency)
-    model_path = r"E:\jivi-ai\results\run_20241025_160239\best_model.pth"  # Update path
+    model_path = os.path.join(current_dir, "models", "best_model.pth")  # Update path
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
     model.eval()

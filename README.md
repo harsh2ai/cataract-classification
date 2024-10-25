@@ -13,6 +13,9 @@ cataract-classification/
     ├── requirements.txt             # Python dependencies
     ├── main.py                      # FastAPI app for inference
     └── frontend.py                  # Streamlit app for frontend 
+    └── generate_setup_scripts.py     # Python script to generate setup scripts for Windows and Linux/macOS
+    ├── models/
+│   └── best_model.pth
 ```
 
 ## How to Use
@@ -24,8 +27,23 @@ This project includes generate_setup_scripts.py, a Python script to automaticall
 git clone https://github.com/your-repo/cataract-classification.git
 cd cataract-classification
 ```
+### 2. Download the Model Files from Google Drive
 
-### 2. Generate the Setup Script
+1. Open the following **Google Drive link** in your browser:  
+   [Google Drive Link](https://drive.google.com/drive/folders/1A71FHeX18Ag9tD-Z3yiDDuz6fGkMjGxm?usp=sharing)
+
+2. **Download the model zip file** provided in the Google Drive folder.
+
+### 3. Extract the Model Files
+
+1. Once the zip file is downloaded, **create a folder** named `models` inside the `cataract-classification` directory.
+
+2. **Extract the downloaded zip file** into the `models` folder. Make sure the `best_model.pth` file is directly inside the `models` directory after extraction.
+
+   After extraction, the directory structure should look like shown above.
+
+
+### 4. Generate the Setup Script
 
 ```bash
 python setup.py
@@ -38,7 +56,7 @@ This will generate a setup script for your operating system.
 
 In case above script is not working, you can manually install the dependencies using `requirements.txt` file.
 
-### 3. Run the Generated Setup Script
+### 5. Run the Generated Setup Script
 
 Run the appropriate setup script for your operating system.
 
@@ -53,7 +71,7 @@ On Linux and MacOS:
 setup_project.sh
 ```
 
-### 4. Run the FastAPI App
+### 6. Run the FastAPI App
 
 ```bash
 uvicorn main:app --reload
@@ -67,7 +85,7 @@ streamlit run frontend.py
 This will start the Streamlit app, allowing you to interact with the cataract classification system through a web interface.
 
 
-### 5. Making Predictions
+### 7. Making Predictions
 
 Once both the FastAPI backend and Streamlit frontend are running, you can make predictions as follows:
 
