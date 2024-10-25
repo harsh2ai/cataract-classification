@@ -3,16 +3,17 @@
 This repository implements a deep learning-based cataract classification system using FastAPI and Streamlit. The system utilizes a custom neural network built on top of CLIP for image feature extraction and a custom classifier to predict cataract and non-cataract images.
 
 ## Directory Structure
+```
 cataract-classification/
-│
-├── augmentatioin.ipynb          # Notebook for image augmentation techniques
-├── EDA.ipynb                    # Exploratory Data Analysis notebook
-├── LICENSE                      # License information
-├── Readme.md                    # This README file
-├── requirements.txt             # Python dependencies
-├── main.py                      # FastAPI app for inference
-└── frontend.py                  # Streamlit app for frontend 
-
+    │
+    ├── augmentatioin.ipynb          # Notebook for image augmentation techniques
+    ├── EDA.ipynb                    # Exploratory Data Analysis notebook
+    ├── LICENSE                      # License information
+    ├── Readme.md                    # This README file
+    ├── requirements.txt             # Python dependencies
+    ├── main.py                      # FastAPI app for inference
+    └── frontend.py                  # Streamlit app for frontend 
+```
 
 ## How to Use
 
