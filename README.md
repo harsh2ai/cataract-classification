@@ -18,27 +18,47 @@ cataract-classification/
 ## How to Use
 
 ### 1. Clone the repository
+This project includes generate_setup_scripts.py, a Python script to automatically generate platform-specific setup scripts for Windows and Linux/macOS. It also automates the process of downloading and unzipping model files from Google Drive
 
 ```bash
 git clone https://github.com/your-repo/cataract-classification.git
 cd cataract-classification
 ```
 
-### 2. Install Dependencies
+### 2. Generate the Setup Script
 
 ```bash
-pip install -r requirements.txt
+python setup.py
 ```
 
-### 3. Run the FastAPI App
+This will generate a setup script for your operating system.
+ - For Windows, it will generate `setup_project.bat`
+ - For Linux and MacOS, it will generate `setup_project.sh`
+
+
+In case above script is not working, you can manually install the dependencies using `requirements.txt` file.
+
+### 3. Run the Generated Setup Script
+
+Run the appropriate setup script for your operating system.
+
+On Windows:
+
+```bash
+setup_project.bat
+```
+
+On Linux and MacOS:
+```bash
+setup_project.sh
+```
+
+### 4. Run the FastAPI App
 
 ```bash
 uvicorn main:app --reload
 ```
 
-### 4. Run the Streamlit Frontend
-
-In a new terminal window, navigate to the project directory and run:
 
 ```bash
 streamlit run frontend.py
@@ -75,6 +95,18 @@ For an interactive API documentation interface, visit: `http://localhost:8000/do
 
 For a more detailed documentation, visit: `http://localhost:8000/redoc`
 
+
+### Explanation of Changes:
+1. **Downloading and Unzipping Model Files**:
+   - The generated setup script now includes the use of `gdown` to download model files from a Google Drive link.
+   - The zip file is automatically extracted to the `./models` directory.
+
+2. **Google Drive Link**:
+   - Replace `"https://drive.google.com/drive/folders/1A71FHeX18Ag9tD-Z3yiDDuz6fGkMjGxm?usp=sharing"` with the actual link to the Google Drive folder containing the model files.
+
+### How the Automation Works:
+- **Linux/macOS**: The script uses `gdown` to download the zip file from Google Drive and then unzips it into the `./models` directory.
+- **Windows**: The script uses `gdown` and `powershell` to download and unzip the file into the same directory.
 
 
 

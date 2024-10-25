@@ -1,5 +1,6 @@
 import os
 import platform
+import subprocess
 
 SETUP_ART = r'''
       _______
@@ -10,6 +11,21 @@ SETUP_ART = r'''
 
    Project Setup
 '''
+
+# Function to download and unzip Google Drive file
+def download_and_unzip(gdrive_link, output_dir):
+    gdown_command = f"gdown {gdrive_link} -O model_files.zip"
+    unzip_command = f"unzip -o model_files.zip -d {output_dir}"
+    
+    # Downloading the zip file from Google Drive
+    print("Downloading model files from Google Drive...")
+    subprocess.run(gdown_command, shell=True, check=True)
+    
+    # Unzipping the file
+    print("Unzipping model files...")
+    subprocess.run(unzip_command, shell=True, check=True)
+    
+    print(f"Model files unzipped to {output_dir}")
 
 def generate_unix_script():
     script = f'''#!/bin/bash
@@ -24,6 +40,13 @@ pip install -r requirements.txt
 
 # Install CLIP
 pip install git+https://github.com/openai/CLIP.git
+
+# Install gdown to download from Google Drive
+pip install gdown
+
+# Download and unzip model files
+gdown "your_google_drive_link_here" -O model_files.zip
+unzip -o model_files.zip -d ./models
 
 echo "Project environment setup complete!"
 
@@ -55,6 +78,13 @@ pip install -r requirements.txt
 
 REM Install CLIP
 pip install git+https://github.com/openai/CLIP.git
+
+REM Install gdown to download from Google Drive
+pip install gdown
+
+REM Download and unzip model files
+gdown "your_google_drive_link_here" -O model_files.zip
+powershell -Command "Expand-Archive -Force model_files.zip -DestinationPath ./models"
 
 echo Project environment setup complete!
 
